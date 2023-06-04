@@ -1,0 +1,12 @@
+{
+  "name": "proyectofinal_herrera",
+  "version": "1.0.0",
+  "description": "Ecommerce con html, scss, javascript y localStorage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch assets/scss -o assets/css"
+  },
+  "author": "William Humberto Herrera Rey",
+  "license": "ISC"
+}
