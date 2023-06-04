@@ -7,9 +7,12 @@
 
 :root {
   --clr-main: #2D7331;
+  --clr-main-light: #58af5c;
+  --clr-main-light-complement: #af57aa;
   --clr-white: #F2F2F2;
   --clr-gray: #F2E6D8;
-  --clr-orange: #F2522E; }
+  --clr-orange: #F2522E;
+  --clr-shadow: #a9a6a6; }
 
 h1, h2, h3, h4, h5, h6, p, a, input, textarea, ul {
   margin: 0;
@@ -20,3 +23,99 @@ ul {
 
 a {
   text-decoration: none; }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: var(--clr-main); }
+
+aside {
+  padding: 1.5rem;
+  color: var(--clr-white);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.logo {
+  font-weight: 400;
+  font-size: 1.3rem; }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; }
+
+.menu_item {
+  background-color: transparent;
+  border: 0;
+  color: var(--clr-white);
+  font-size: 1rem;
+  cursor: pointer; }
+
+.bi-hand-index-thumb-fill, .bi-hand-index-thumb {
+  transform: rotateZ("90deg"); }
+
+.footer_text {
+  font-size: 0.7rem;
+  color: var(--clr-main-light); }
+
+main {
+  background-color: var(--clr-white);
+  margin: 1rem;
+  margin-left: 0;
+  border-radius: 2rem;
+  padding: 3rem; }
+
+.main_title {
+  color: var(--clr-main);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2rem; }
+
+.products_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem; }
+
+.product {
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px 1px var(--clr-shadow); }
+
+.product_image {
+  max-width: 100%;
+  border-radius: 1rem; }
+
+.product_details {
+  background-color: var(--clr-main);
+  color: var(--clr-white);
+  padding: .5rem;
+  border-radius: 1rem;
+  margin-top: -2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem; }
+
+.product_title {
+  font-size: 1rem; }
+
+.product_submit {
+  background-color: var(--clr-main-light);
+  color: var(--clr-white);
+  border: 0;
+  padding: .4rem;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  border: 2px solid var(--clr-white);
+  transition: background-color .2s, color .2s; }
+
+.product_submit:hover {
+  background-color: var(--clr-main-light-complement);
+  color: var(--clr-white); }

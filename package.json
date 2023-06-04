@@ -8,5 +8,8 @@
     "scss": "node-sass --watch assets/scss -o assets/css"
   },
   "author": "William Humberto Herrera Rey",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap-icons": "^1.10.5"
+  }
 }
