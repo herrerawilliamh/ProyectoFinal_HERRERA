@@ -100,6 +100,16 @@ aside {
 .cart_buttom {
   margin-top: 2rem; }
 
+.number {
+  background-color: var(--clr-white);
+  color: var(--clr-main);
+  padding: .15rem .25rem;
+  border-radius: .25rem; }
+
+.menu_item.active .number {
+  background-color: var(--clr-main);
+  color: var(--clr-white); }
+
 .footer_text {
   font-size: 0.7rem;
   color: var(--clr-main-light); }
