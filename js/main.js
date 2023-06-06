@@ -67,7 +67,15 @@ function actualizarBotonesAgregar(){
     });
 }
 
-const productosEnCarrito = [];
+let productosEnCarrito;
+let nuevoNumero;
+const productosEnCarritoLS =JSON.parse(localStorage.getItem("productosEnCarritoCompra"));
+if(productosEnCarritoLS){
+    productosEnCarrito = productosEnCarritoLS;
+    actualizarNumero();
+}else{
+    productosEnCarrito = [];
+}
 
 function agregarAlCarrito(e){
     const idBoton = e.currentTarget.id;
