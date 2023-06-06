@@ -59,6 +59,7 @@ aside {
   padding: .5rem;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem; }
@@ -66,7 +67,6 @@ aside {
 .menu_item.active {
   background-color: var(--clr-white);
   color: var(--clr-main);
-  width: 100%;
   border-right: 0;
   padding: .5rem;
   position: relative; }
@@ -137,7 +137,7 @@ main {
   box-shadow: 5px 5px 5px 1px var(--clr-shadow); }
 
 .product_image {
-  max-width: 100%;
+  width: 100%;
   border-radius: 1rem; }
 
 .product_details {
