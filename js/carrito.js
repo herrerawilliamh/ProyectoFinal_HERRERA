@@ -64,6 +64,26 @@ function actualizarBotonesEliminar(){
 }
 
 function eliminarPRoductoCarrito(e){
+    Toastify({
+        text: "👎🏻 Producto eliminado 📦",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #2D7331, #58af5c)",
+          borderRadius: "1.5rem",
+          textTransform: "uppercase",
+          fontSize: ".85rem"
+        },
+        offset: {
+            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        onClick: function(){} // Callback after click
+      }).showToast();
+
     const idBoton = e.currentTarget.id;
     const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
     console.log(productosEnCarrito)
@@ -75,9 +95,43 @@ function eliminarPRoductoCarrito(e){
 
 botonVaciar.addEventListener("click", vaciarCarrito);
 function vaciarCarrito(){
-    productosEnCarrito.length = 0;
-    cargarProductosCarrito();
-    localStorage.setItem("productosEnCarritoCompra", JSON.stringify(productosEnCarrito));
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: `¡Si haces esto perderás los ${productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} productos de tu carrito!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '¡Sí, borralos!',
+        cancelButtonText: 'No, ¡sálvame!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) { 
+          swalWithBootstrapButtons.fire(
+            '¡Carrito vacío!',
+            'Los productos en el carrito se han borrado.',
+            'success'
+          )
+            productosEnCarrito.length = 0;
+            cargarProductosCarrito();
+            localStorage.setItem("productosEnCarritoCompra", JSON.stringify(productosEnCarrito));
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            '¡Nada ha pasado!',
+            'Todos tus productos siguen en el carrito.',
+            'success'
+          )
+        }
+      })    
 }
 
 function actualizarTotal(){

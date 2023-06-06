@@ -1,20 +1,10 @@
-//Creación de productos
-const productos=[  
-    {id:"zapato-01", producto: "Botas", categoria:{nombre:"Calzado", id:"calzado"}, precio: 320000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3096.jpg"},
-    {id:"zapato-02", producto: "Pantuflas", categoria:{nombre: "Calzado", id: "calzado"}, precio: 180000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/15009.jpg"},
-    {id:"zapato-03", producto: "Escaladoras", categoria:{nombre: "Calzado", id: "calzado"}, precio: 250000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/14264.jpg"},
-    {id:"zapato-04", producto: "Sandalias", categoria:{nombre: "Calzado", id: "calzado"}, precio: 120000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3144.jpg"},
-    {id:"zapato-05", producto: "Tenis", categoria:{nombre: "Calzado", id: "calzado"}, precio: 280000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3097.jpg"},
-    {id:"zapato-06", producto: "Running", categoria:{nombre: "Calzado", id: "calzado"}, precio: 350000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/16816.jpg"},
-    {id:"ropa-01", producto: "Camisa", categoria:{nombre: "Ropa", id: "ropa"}, precio: 120000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3148.jpg"},
-    {id:"ropa-02", producto: "Pantalon", categoria:{nombre: "Ropa", id: "ropa"}, precio: 180000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/11450.jpg"},
-    {id:"ropa-03", producto: "Chaqueta", categoria:{nombre: "Ropa", id: "ropa"}, precio: 250000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/11507.jpg"},
-    {id:"ropa-04", producto: "Calcetines", categoria:{nombre: "Ropa", id: "ropa"}, precio: 50000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3023.jpg"},
-    {id:"accesorio-01", producto: "Gorra", categoria:{nombre: "Accesorios", id: "accesorio"}, precio: 30000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/18639.jpg"},
-    {id:"accesorio-02", producto: "Bandas", categoria:{nombre: "Accesorios", id: "accesorio"}, precio: 150000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/18638.jpg"},
-    {id:"accesorio-03", producto: "Gorro", categoria:{nombre: "Accesorios", id: "accesorio"}, precio: 70000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3021.jpg"},
-    {id:"accesorio-04", producto: "Guantes", categoria:{nombre: "Accesorios", id: "accesorio"}, precio: 40000, imagen: "https://cache.tradeinn.com/images/fotos_subfamilias/3020.jpg"},
-];
+let productos = [];
+fetch("./js/productos.json")
+.then(response => response.json())
+.then(data => {
+    productos = data;
+    cargarProductos(productos);
+})
 
 const contenedorProductos = document.querySelector("#products_container");
 const categoriaBotones = document.querySelectorAll(".categorie_buttom");
@@ -78,6 +68,26 @@ if(productosEnCarritoLS){
 }
 
 function agregarAlCarrito(e){
+    Toastify({
+        text: "👌 Producto agregado 📦",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #2D7331, #58af5c)",
+          borderRadius: "1.5rem",
+          textTransform: "uppercase",
+          fontSize: ".85rem"
+        },
+        offset: {
+            x: '1.5rem', // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: '1.5rem' // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        onClick: function(){} // Callback after click
+      }).showToast();
+
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
     if(productosEnCarrito.some(producto => producto.id === idBoton)){
