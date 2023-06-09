@@ -143,8 +143,42 @@ botonComprar.addEventListener("click", comprarCarrito);
 function comprarCarrito(){
     productosEnCarrito.length = 0;
     localStorage.setItem("productosEnCarritoCompra", JSON.stringify(productosEnCarrito));
-    contenedorCarritoVacio.classList.add("disable");
-    contenedorCarritoProductos.classList.add("disable");
-    contenedorCarritoAcciones.classList.add("disable");
-    contenedorCarritoPagado.classList.remove("disable");
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: '¿Quieres realizar la compra?',
+      text: "¡No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, aceptar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          '¡Felicidades!',
+          'Tu compra ha sido realizada.',
+          'success'
+        )
+        contenedorCarritoVacio.classList.remove("disable");
+        contenedorCarritoProductos.classList.add("disable");
+        contenedorCarritoAcciones.classList.add("disable");
+        contenedorCarritoPagado.classList.add("disable");
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Compra cancelada',
+          'Sigue comprando :)',
+          'error'
+        )
+      }
+    })
 }
